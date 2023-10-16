@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} User Profile Page {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2 ">
+                <h1 class="text-center text-primary">{{ request.user.email }}</h1>
+                <form action="" method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    {{form | crispy}}
+                    <button type="submit" class="btn btn-warning">Update</button>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6 offset-3">
+                <h1 class="text-danger">DANGER ZONE <a href="{% url 'delete' request.user.pk %}" class="btn btn-danger">Delete User</a></h1>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

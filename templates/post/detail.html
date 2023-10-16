@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Detail Page {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2 ">
+                <h1 class="text-center text-primary">{{post.title}}</h1>
+                {% if post.image %}
+                    <img src="{{post.image.url}}" alt="">
+                {% endif %}
+                <p>
+                    {{ post.description }}
+                </p>
+                {% for tag in post.tag.all %}
+                    <span class="badge text-bg-success">{{ tag.name }}</span>
+                {% endfor %}
+                <p>Date: {{post.publish_date}}, Author: {{post.author.username}} </p>
+                {% if request.user.is_authenticated %}
+                <div>
+                    <a href="{% url 'post-update' post.slug %}" class="btn btn-success">Update</a>
+                    <a href="{% url 'post-delete' post.slug %}" class="btn btn-danger">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

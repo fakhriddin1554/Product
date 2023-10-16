@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Delete User Page {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-2 ">
+                <h1 class="text-center text-primary">Delete Existing User</h1>
+                <form action="" method="post" enctype="multipart/form-data" >
+                    <p>Are you sure? Delete this post?</p>
+                    {% csrf_token %}
+                    {{form | crispy}}
+                    <button type="submit" class="btn btn-danger" >Yes, I'm sure</button>
+                    <a href="{% url 'index' %}" class="btn btn-success">No, go back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
